@@ -38,6 +38,7 @@ class LoginMethods:
             login_pass.append(login)
             login_pass.append(password)
             login_pass.append(first_name)
+            login_pass.append(response)
 
         # возвращаем список
         return login_pass
@@ -59,6 +60,7 @@ class LoginMethods:
 
 
 
-
-print(LoginMethods.login_in_system('ninjarer', '1234'))
-print(LoginMethods.delete_login(LoginMethods.login_in_system('ninjarer', '1234')))
+login_pass = LoginMethods.register_new_courier_and_return_login_password()
+print(login_pass[3].status_code)
+print(LoginMethods.login_in_system(login_pass[0], login_pass[1]))
+print(LoginMethods.delete_login(LoginMethods.login_in_system(login_pass[0], login_pass[1])))
