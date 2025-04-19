@@ -5,7 +5,6 @@ from methods.generators import GenerateBody
 @pytest.fixture
 def generate_login_data():
     test_body = GenerateBody.generate_body()
-    print(test_body)
     login_body = LoginMethods.register_new_courier_and_return_login_password(test_body)
     body = login_body[3]
     yield body
@@ -22,7 +21,14 @@ def generate_two_courier_with_same_login():
 def generate_without_login_data():
     test_body = GenerateBody.generate_body()
     test_body['login'] = ''
-    print(test_body)
+    login_body = LoginMethods.register_new_courier_and_return_login_password(test_body)
+    body = login_body[3]
+    return body
+
+@pytest.fixture
+def generate_without_password_data():
+    test_body = GenerateBody.generate_body()
+    test_body['login'] = ''
     login_body = LoginMethods.register_new_courier_and_return_login_password(test_body)
     body = login_body[3]
     return body
