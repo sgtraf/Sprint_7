@@ -11,8 +11,8 @@ class TestCreateLogin:
 
     @allure.title('Test UnSuccessful two login creation with the same data')
     @allure.description('Тут пытаемся создать два курьера с одинаковыми логинами и проверяем ответ API')
-    def test_create_two_courier_with_same_data(self, generate_two_courier_with_same_login):
-        responce = generate_two_courier_with_same_login
+    def test_create_two_courier_with_same_data(self, generate_two_courier_with_same_login_data):
+        responce = generate_two_courier_with_same_login_data
         assert responce.status_code == 409 and responce.json()['message'] == 'Этот логин уже используется. Попробуйте другой.'
 
     @allure.title('Test UnSuccessful create courier without login data')
@@ -46,4 +46,10 @@ class TestCreateLogin:
     def test_error_create_courier_without_password(self, generate_without_password_data):
         responce = generate_without_password_data
         assert responce.status_code == 400 and responce.json()['message'] == 'Недостаточно данных для создания учетной записи'
+
+    @allure.title('Test UnSuccessful two login creation with the same data')
+    @allure.description('Если создать пользователя с логином, который уже есть, возвращается ошибка.')
+    def test_create_two_courier_with_same_login_data(self, generate_two_courier_with_same_login_data):
+        responce = generate_two_courier_with_same_login_data
+        assert responce.status_code == 409 and responce.json()['message'] == 'Этот логин уже используется. Попробуйте другой.'
 

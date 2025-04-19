@@ -32,3 +32,12 @@ def generate_without_password_data():
     login_body = LoginMethods.register_new_courier_and_return_login_password(test_body)
     body = login_body[3]
     return body
+
+@pytest.fixture
+def generate_two_courier_with_same_login_data():
+    test_body = GenerateBody.generate_body()
+    LoginMethods.register_new_courier_and_return_login_password(test_body)
+    login_body = LoginMethods.register_new_courier_and_return_login_password(test_body)
+    body = login_body[3]
+    yield body
+    LoginMethods.delete_login(LoginMethods.login_in_system(login_body[0], login_body[1]))
