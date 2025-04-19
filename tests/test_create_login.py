@@ -34,9 +34,16 @@ class TestCreateLogin:
         responce = generate_login_data
         assert responce.status_code == 201
 
+    @allure.title('Test returning error without some data in body ')
+    @allure.description('Если нет поля "логин", запрос возвращает ошибку;')
+    def test_error_create_courier_without_login(self, generate_without_login_data):
+        responce = generate_without_login_data
+        assert responce.status_code == 400 and responce.json()['message'] == 'Недостаточно данных для создания учетной записи'
 
-    @allure.title('Test Successful login creation')
-    @allure.description('Тут создаем логин и проверяем ответ API')
-    def test_create_login_json_ok(self, generate_login_data):
-        responce = generate_login_data
-        assert responce.json()['ok'] == True
+
+    @allure.title('Test returning error without some data in body ')
+    @allure.description('Если нет поля "пароль", запрос возвращает ошибку;')
+    def test_error_create_courier_without_password(self, generate_without_password_data):
+        responce = generate_without_password_data
+        assert responce.status_code == 400 and responce.json()['message'] == 'Недостаточно данных для создания учетной записи'
+
