@@ -1,4 +1,6 @@
 import allure
+from data import OrderData
+
 
 class TestLogin:
     @allure.title('Test Successful login')
@@ -23,13 +25,13 @@ class TestLogin:
     @allure.description('Пытаемся войти без пароля и проверяем ответ API')
     def test_login_courier_without_password(self,get_login_withot_password):
         response = get_login_withot_password
-        assert response.json()['message'] == 'Недостаточно данных для входа'
+        assert response.json()['message'] == OrderData.MESSEGE_INC_LOGIN
 
     @allure.title('Test UnSuccessful login with unreal data')
     @allure.description('Если авторизоваться под несуществующим пользователем, запрос возвращает ошибку')
     def test_login_with_unreal_data(self, get_login_with_unreal_data):
         response = get_login_with_unreal_data
-        assert response.json()['message'] == 'Учетная запись не найдена' and response.status_code == 404
+        assert response.json()['message'] == OrderData.MESSEGE_NOT_FIND_LOGIN and response.status_code == 404
 
     @allure.title('Test Successful login return id')
     @allure.description('Успешный запрос возвращает id')
