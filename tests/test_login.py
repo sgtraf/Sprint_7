@@ -26,8 +26,13 @@ class TestLogin:
         assert response.json()['message'] == 'Недостаточно данных для входа'
 
     @allure.title('Test UnSuccessful login with unreal data')
-    @allure.description('Если авторизоваться под несуществующим пользователем, запрос возвращает ошибку;')
+    @allure.description('Если авторизоваться под несуществующим пользователем, запрос возвращает ошибку')
     def test_login_with_unreal_data(self, get_login_with_unreal_data):
         response = get_login_with_unreal_data
         assert response.json()['message'] == 'Учетная запись не найдена' and response.status_code == 404
 
+    @allure.title('Test Successful login return id')
+    @allure.description('Успешный запрос возвращает id')
+    def test_login_with_unreal_data(self, get_login_id):
+        response = get_login_id
+        assert response.json()["id"] != 0
