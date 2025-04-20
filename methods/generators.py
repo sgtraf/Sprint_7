@@ -1,6 +1,7 @@
 import random
 import string
 
+
 class GenerateBody:
     @staticmethod
     def generate_body():
@@ -20,13 +21,3 @@ class GenerateBody:
                 "firstName": first_name
                 }
         return payload
-
-#print(GenerateBody.generate_body())
-#body = GenerateBody.generate_body() # заново генерирует данные
-#print(body)
-##print(body) # здесь нет новой генерации
-
-#body['login'] = ''
-#print(body)
-
-

@@ -2,6 +2,7 @@ import pytest
 from methods.login_method import LoginMethods
 from methods.generators import GenerateBody
 
+
 @pytest.fixture
 def generate_login_data():
     test_body = GenerateBody.generate_body()

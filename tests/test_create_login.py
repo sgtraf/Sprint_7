@@ -39,7 +39,6 @@ class TestCreateLogin:
         response = generate_without_login_data
         assert response.status_code == 400 and response.json()['message'] == 'Недостаточно данных для создания учетной записи'
 
-
     @allure.title('Test returning error without some data in body ')
     @allure.description('Если нет поля "пароль", запрос возвращает ошибку;')
     def test_error_create_courier_without_password(self, generate_without_password_data):
@@ -51,4 +50,3 @@ class TestCreateLogin:
     def test_create_two_courier_with_same_login_data(self, generate_two_courier_with_same_login_data):
         response = generate_two_courier_with_same_login_data
         assert response.status_code == 409 and response.json()['message'] == 'Этот логин уже используется. Попробуйте другой.'
-
