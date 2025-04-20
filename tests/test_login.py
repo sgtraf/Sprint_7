@@ -12,3 +12,22 @@ class TestLogin:
     def test_login_courier_without_password(self,get_login_withot_password):
         response = get_login_withot_password
         assert response.status_code == 400
+
+    @allure.title('Test Error after login incorrect data')
+    @allure.description('Система вернёт ошибку, если неправильно указать логин или пароль;')
+    def test_login_with_icorrect_password(self,get_login_with_incorrect_password):
+        response = get_login_with_incorrect_password
+        assert response.status_code == 404
+
+    @allure.title('Test UnSuccessful courier login without necessary data')
+    @allure.description('Пытаемся войти без пароля и проверяем ответ API')
+    def test_login_courier_without_password(self,get_login_withot_password):
+        response = get_login_withot_password
+        assert response.json()['message'] == 'Недостаточно данных для входа'
+
+    @allure.title('Test UnSuccessful login with unreal data')
+    @allure.description('Если авторизоваться под несуществующим пользователем, запрос возвращает ошибку;')
+    def test_login_with_unreal_data(self, get_login_with_unreal_data):
+        response = get_login_with_unreal_data
+        assert response.json()['message'] == 'Учетная запись не найдена' and response.status_code == 404
+
