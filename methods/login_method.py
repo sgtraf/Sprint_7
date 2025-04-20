@@ -30,7 +30,7 @@ class LoginMethods:
         params = {'login': login, 'password': password}
         response = requests.post(f'{data.Url.MAIN_URL}{data.Url.LOGIN_COURIER_URL}/', data = params )
         courier_id = response.json()
-        return courier_id["id"]
+        return [courier_id["id"], response.status_code]
 
 
     @staticmethod
