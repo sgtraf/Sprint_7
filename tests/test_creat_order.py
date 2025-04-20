@@ -1,6 +1,5 @@
 import allure
 import pytest
-import requests
 import data
 from methods.orders_methods import OrdersMethodes
 
