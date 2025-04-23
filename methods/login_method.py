@@ -1,5 +1,5 @@
 import requests
-import data
+import urls
 
 
 class LoginMethods:
@@ -27,11 +27,11 @@ class LoginMethods:
     @staticmethod
     def login_in_system(login, password):
         params = {'login': login, 'password': password}
-        response = requests.post(f'{data.Url.MAIN_URL}{data.Url.LOGIN_COURIER_URL}/', data = params )
+        response = requests.post(f'{urls.Url.MAIN_URL}{urls.Url.LOGIN_COURIER_URL}/', data = params )
         return response
 
     @staticmethod
     def delete_login(login_id):
         params = {'id': login_id}
-        response_delete = requests.delete(f"{data.Url.MAIN_URL}{data.Url.DELETE_COURIER_URL}{login_id}", params=params)
+        response_delete = requests.delete(f"{urls.Url.MAIN_URL}{urls.Url.DELETE_COURIER_URL}{login_id}", params=params)
         return response_delete.status_code
