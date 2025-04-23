@@ -24,7 +24,7 @@ class LoginMethods:
         login_pass.append(response)
 
         # возвращаем список
-        return login_pass
+        return response
 
     @staticmethod
     def login_in_system(login, password):
