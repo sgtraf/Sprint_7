@@ -12,18 +12,6 @@ def generate_login_data():
         LoginMethods.delete_login(LoginMethods.login_in_system(test_body['login'], test_body['password']).json()["id"])
 
 @pytest.fixture
-def generate_without_login_data():
-    test_body = GenerateBody.generate_body()
-    test_body['login'] = ''
-    return test_body
-
-@pytest.fixture
-def generate_without_password_data():
-    test_body = GenerateBody.generate_body()
-    test_body['password'] = ''
-    return test_body
-
-@pytest.fixture
 def generate_two_courier_with_same_login_data():
     test_body = GenerateBody.generate_body()
     with allure.step("Создаем курьера"):

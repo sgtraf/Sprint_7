@@ -22,17 +22,21 @@ class TestCreateLogin:
 
     @allure.title('Test UnSuccessful create courier without login data')
     @allure.description('Пытаемся создать курьера без логина и проверяем ответ API')
-    def test_create_courier_without_login(self,generate_without_login_data):
+    def test_create_courier_without_login(self,get_login_with_unreal_data):
+        test_body = get_login_with_unreal_data
+        test_body['login'] = ''
         with allure.step("Создаем курьера без логина"):
-            body = LoginMethods.register_new_courier_and_return_login_password(generate_without_login_data)
+            body = LoginMethods.register_new_courier_and_return_login_password(test_body)
         with allure.step("Проверяем, что код ответа и тело соответствует документации"):
             assert body.status_code == 400 and body.json()['message'] == OrderData.MESSEGE_TEXT_400
 
     @allure.title('Test UnSuccessful create courier without password data')
     @allure.description('Пытаемся создать курьера без пароля и проверяем ответ API')
-    def test_create_courier_without_password(self, generate_without_password_data):
+    def test_create_courier_without_password(self, get_login_with_unreal_data):
+        test_body = get_login_with_unreal_data
+        test_body['password'] = ''
         with allure.step("Создаем курьера без пароля"):
-            body = LoginMethods.register_new_courier_and_return_login_password(generate_without_password_data)
+            body = LoginMethods.register_new_courier_and_return_login_password(test_body)
         with allure.step("Проверяем, что код ответа и тело соответствует документации"):
             assert body.status_code == 400 and body.json()[
             'message'] == 'Недостаточно данных для создания учетной записи'
@@ -47,17 +51,21 @@ class TestCreateLogin:
 
     @allure.title('Test returning error without some data in body ')
     @allure.description('Если нет поля "логин", запрос возвращает ошибку;')
-    def test_error_create_courier_without_login(self, generate_without_login_data):
+    def test_error_create_courier_without_login(self, get_login_with_unreal_data):
+        test_body = get_login_with_unreal_data
+        test_body['login'] = ''
         with allure.step("Создаем курьера без логина"):
-            body = LoginMethods.register_new_courier_and_return_login_password(generate_without_login_data)
+            body = LoginMethods.register_new_courier_and_return_login_password(test_body)
         with allure.step("Проверяем, что код ответа и тело соответствует документации"):
             assert body.status_code == 400 and body.json()['message'] == OrderData.MESSEGE_TEXT_400
 
     @allure.title('Test returning error without some data in body ')
     @allure.description('Если нет поля "пароль", запрос возвращает ошибку;')
-    def test_error_create_courier_without_password(self, generate_without_password_data):
+    def test_error_create_courier_without_password(self, get_login_with_unreal_data):
+        test_body = get_login_with_unreal_data
+        test_body['password'] = ''
         with allure.step("Создаем курьера без пароля"):
-            body = LoginMethods.register_new_courier_and_return_login_password(generate_without_password_data)
+            body = LoginMethods.register_new_courier_and_return_login_password(test_body)
         with allure.step("Проверяем, что код ответа и тело соответствует документации"):
             assert body.status_code == 400 and body.json()[
             'message'] == 'Недостаточно данных для создания учетной записи'
