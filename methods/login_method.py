@@ -13,7 +13,7 @@ class LoginMethods:
         login_pass = []
 
         # отправляем запрос на регистрацию курьера и сохраняем ответ в переменную response
-        response = requests.post('https://qa-scooter.praktikum-services.ru/api/v1/courier', data=body)
+        response = requests.post(f'{urls.Url.MAIN_URL}{urls.Url.CREATE_COURIER_URL}', data=body)
 
         #  добавляем в список логин и пароль курьера
         login_pass.append(body['login'])
