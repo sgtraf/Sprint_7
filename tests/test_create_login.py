@@ -31,7 +31,7 @@ class TestCreateLogin:
     @allure.description('Проверка, что запрос возвращает правильный код ответа;')
     def test_create_login_ok(self,generate_login_data):
         response = generate_login_data
-        assert response.status_code == 201
+        assert response.status_code == 201 and response.json()['ok'] == True
 
     @allure.title('Test returning error without some data in body ')
     @allure.description('Если нет поля "логин", запрос возвращает ошибку;')
