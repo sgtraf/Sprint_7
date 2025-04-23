@@ -6,5 +6,3 @@ class Url:
     GET_LIST_ORDERS_URL = '/api/v1/orders'
     CANCEL_ORDER_URL = '/api/v1/orders/cancel?track='
     DELETE_COURIER_URL = '/api/v1/courier/' # :id - Номер курьера, хранится в поле id таблицы Couriers
-    TAKE_ORDER_URL = '/api/v1/orders/accept/:id' # :id - Номер заказа, хранится в поле id таблицы Orders
-    GET_ORDER_BY_NUMBER = '/api/v1/orders/track' # track - Трекинговый номер заказа

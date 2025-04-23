@@ -10,20 +10,10 @@ class LoginMethods:
     # если регистрация не удалась, возвращает пустой список
     def register_new_courier_and_return_login_password(body):
 
-        # создаём список, чтобы метод мог его вернуть
-        login_pass = []
-
         # отправляем запрос на регистрацию курьера и сохраняем ответ в переменную response
         with allure.step("Создаем запрос создания курьера"):
             response = requests.post(f'{urls.Url.MAIN_URL}{urls.Url.CREATE_COURIER_URL}', data=body)
 
-        #  добавляем в список логин и пароль курьера
-        login_pass.append(body['login'])
-        login_pass.append(body['password'])
-        login_pass.append(body['firstName'])
-        login_pass.append(response)
-
-        # возвращаем список
         return response
 
     @staticmethod

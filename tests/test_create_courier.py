@@ -9,7 +9,6 @@ class TestCreateLogin:
     def test_create_login(self,generate_login_data):
         with allure.step("Создаем курьера"):
             login_body = LoginMethods.register_new_courier_and_return_login_password(generate_login_data)
-        #body = login_body[3]
         with allure.step("Проверяем, что код ответа 201 и тело соответствует документации"):
             assert login_body.status_code == 201 and login_body.json()['ok'] == True
 
@@ -18,7 +17,6 @@ class TestCreateLogin:
     def test_create_two_courier_with_same_data(self, generate_two_courier_with_same_login_data):
         with allure.step("Создаем второго курьера"):
             body = LoginMethods.register_new_courier_and_return_login_password(generate_two_courier_with_same_login_data)
-        #body = login_body[3]
         with allure.step("Проверяем, что код ответа и тело соответствует документации"):
             assert body.status_code == 409 and body.json()['message'] == OrderData.MESSEGE_TEXT_409
 
